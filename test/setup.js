@@ -23,13 +23,21 @@ module.exports = {
     await registrar.providers([
       '@adonisjs/framework/providers/AppProvider',
       '@adonisjs/lucid/providers/LucidProvider',
-      '@adonisjs/validator/providers/ValidatorProvider'
+      '@adonisjs/validator/providers/ValidatorProvider',
+      '@adonisjs/antl/providers/AntlProvider',
+      path.join(__dirname, '../providers/TranslatableProvider')
     ]).registerAndBoot()
 
     ioc.singleton('App/Models/Role', (app) => {
       const Model = app.use('Model')
       class Role extends Model {
-
+        static boot () {
+          super.boot()
+          this.addTrait('EmilioForrer/Translatable', {
+            className: 'App/Models/RoleTranslation',
+            attributes: ['name', 'description']
+          })
+        }
       }
       Role._bootIfNotBooted()
       return Role
@@ -38,12 +46,13 @@ module.exports = {
     ioc.singleton('App/Models/RoleTranslation', (app) => {
       const Model = app.use('Model')
       class RoleTranslation extends Model {
-
+        static get table () {
+          return 'roles_translations'
+        }
       }
       RoleTranslation._bootIfNotBooted()
       return RoleTranslation
     })
-
   },
 
   async migrateUp () {
@@ -63,7 +72,7 @@ module.exports = {
       table.increments()
       table.timestamps()
 
-      table.string('name').notNullable().unique()
+      table.string('name').nullable()
       table.text('description').nullable()
       /*
        * Translation fields

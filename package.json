@@ -1,5 +1,5 @@
 {
-  "name": "@emilioforrer/adonis-addon",
+  "name": "@emilioforrer/adonis-translatable",
   "version": "1.0.0",
   "description": "A sample addon for AdonisJs",
   "main": "index.js",
@@ -35,5 +35,9 @@
     "nyc": "^11.7.1",
     "sqlite3": "^4.0.0",
     "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "@adonisjs/antl": "^2.0.5",
+    "pluralize": "^7.0.0"
   }
 }

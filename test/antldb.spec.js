@@ -2,10 +2,16 @@
 
 const test = require('japa')
 const setup = require('./setup')
+const moment = require('moment')
+
+function getRole () {
+  return use('App/Models/Role')
+}
 
 test.group('Antldb', (group) => {
   group.before(async () => {
     await setup.wire()
+    await setup.migrateDown()
     await setup.migrateUp()
   })
 
@@ -14,14 +20,23 @@ test.group('Antldb', (group) => {
   })
 
   group.afterEach(async () => {
-    await use('Database').rollbackGlobalTransaction()
+    // await use('Database').rollbackGlobalTransaction()
   })
 
   group.after(async () => {
-    await setup.migrateDown()
+    use('Database').close()
   })
 
-  test('get registeration rules', async (assert) => {
-    assert.deepEqual(true, true)
+  test('test role trait', async (assert) => {
+    let role = await getRole().create({
+      slug: 'admin',
+      created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+      updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
+    })
+    role.name = 'Administrator'
+    assert.deepEqual(role.name, 'Administrator')
+    await role.save()
+    let translation = await role.translation().fetch()
+    assert.deepEqual(translation.name, 'Administrator')
   })
 })

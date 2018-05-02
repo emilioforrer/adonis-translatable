@@ -1,0 +1,39 @@
+{
+  "name": "@emilioforrer/adonis-addon",
+  "version": "1.0.0",
+  "description": "A sample addon for AdonisJs",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "test": "node ./node_modules/nyc/bin/nyc.js ./node_modules/japa-cli/index.js"
+  },
+  "private": true,
+  "keywords": [
+    "adonisjs",
+    "adonis-framework"
+  ],
+  "author": "",
+  "license": "",
+  "standard": {
+    "globals": [
+      "use"
+    ]
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "@adonisjs/ace": "^5.0.1",
+    "@adonisjs/fold": "^4.0.8",
+    "@adonisjs/framework": "^5.0.6",
+    "@adonisjs/lucid": "^5.0.3",
+    "@adonisjs/sink": "^1.0.13",
+    "@adonisjs/validator": "^5.0.3",
+    "japa": "^1.0.5",
+    "japa-cli": "^1.0.1",
+    "nyc": "^11.7.1",
+    "sqlite3": "^4.0.0",
+    "standard": "^10.0.3"
+  }
+}

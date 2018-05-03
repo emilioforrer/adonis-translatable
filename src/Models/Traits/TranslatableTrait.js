@@ -11,7 +11,7 @@ class TranslatableTrait {
 
   async localize (modelInstance, translatableAttributes) {
     if (modelInstance.$persisted) {
-      let translation = await modelInstance.translation()
+      let translation = await modelInstance.translation().fetch()
       if (translation) {
         for (let translatableAttribute of translatableAttributes) {
           modelInstance[translatableAttribute] = translation[translatableAttribute]
@@ -49,7 +49,7 @@ class TranslatableTrait {
         for (let translatableAttribute of options.attributes) {
           this.__setters__.push(translatableAttribute)
         }
-        await that.localize(this, options.attributes)
+        // await that.localize(this, options.attributes)
         await that.setLocalize(this, options.attributes)
       }
 
@@ -80,7 +80,7 @@ class TranslatableTrait {
         await instance.translation().save(translation)
       })
     } else {
-      throw new Error('Function attributes must return an array')
+      throw new Error('option attributes must return an array')
     }
   }
 }

@@ -38,5 +38,13 @@ test.group('Antldb', (group) => {
     await role.save()
     let translation = await role.translation().fetch()
     assert.deepEqual(translation.name, 'Administrator')
+
+    role = await getRole().first()
+    assert.deepEqual(role.name, 'Administrator')
+
+    let roles = await getRole().all()
+    for (let record of roles.rows) {
+      assert.deepEqual(record.name, 'Administrator')
+    }
   })
 })

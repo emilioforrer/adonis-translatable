@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-const { ServiceProvider } = require('@adonisjs/fold')
+const { ServiceProvider } = use('@adonisjs/fold') // require.main.require('@adonisjs/fold') as for https://forum.adonisjs.com/t/v-4-create-serviceproiver-outside-app/128/19
 
 class TranslatableProvider extends ServiceProvider {
   _registerMiddlewares () {

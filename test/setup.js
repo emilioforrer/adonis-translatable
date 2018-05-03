@@ -33,7 +33,7 @@ module.exports = {
       class Role extends Model {
         static boot () {
           super.boot()
-          this.addTrait('EmilioForrer/Translatable', {
+          this.addTrait('Translatable', {
             className: 'App/Models/RoleTranslation',
             attributes: ['name', 'description']
           })

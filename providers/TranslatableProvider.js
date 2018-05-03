@@ -17,7 +17,7 @@ class TranslatableProvider extends ServiceProvider {
   }
 
   _registerTraits () {
-    this.app.bind('App/Models/Traits/EmilioForrer/Translatable', (app) => {
+    this.app.bind('App/Models/Traits/Translatable', (app) => {
       const Translatable = require('../src/Models/Traits/TranslatableTrait')
       return new Translatable()
     })

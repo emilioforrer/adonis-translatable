@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@adonisjs/ace": "^5.0.1",
+    "@adonisjs/fold": "^4.0.8",
     "@adonisjs/framework": "^5.0.6",
     "@adonisjs/lucid": "^5.0.3",
     "@adonisjs/sink": "^1.0.13",

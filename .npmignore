@@ -10,3 +10,5 @@ benchmarks
 bin
 out
 .nyc_output
+docs
+test

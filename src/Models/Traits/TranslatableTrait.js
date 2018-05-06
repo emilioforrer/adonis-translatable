@@ -11,7 +11,11 @@ class TranslatableTrait {
 
   async localize (modelInstance, translatableAttributes) {
     if (modelInstance.$persisted) {
-      let translation = await modelInstance.translation().fetch()
+      let translation = modelInstance.getRelated('translation')
+      if (!translation) {
+        await modelInstance.load('translation')
+        translation = modelInstance.getRelated('translation')
+      }
       if (translation) {
         for (let translatableAttribute of translatableAttributes) {
           modelInstance[translatableAttribute] = translation[translatableAttribute]
@@ -68,7 +72,11 @@ class TranslatableTrait {
       })
 
       Model.addHook('afterSave', async (instance) => {
-        let translation = await instance.translation().fetch()
+        let translation = instance.getRelated('translation')
+        if (!translation) {
+          await instance.load('translation')
+          translation = instance.getRelated('translation')
+        }
         if (!translation) {
           let ClassName = use(options.className)
           translation = new ClassName()
@@ -78,6 +86,7 @@ class TranslatableTrait {
           translation[translatableAttribute] = instance[translatableAttribute]
         }
         await instance.translation().save(translation)
+        instance.$relations['translation'] = translation
       })
     } else {
       throw new Error('option attributes must return an array')

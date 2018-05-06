@@ -36,10 +36,10 @@ test.group('Antldb', (group) => {
     role.name = 'Administrator'
     assert.deepEqual(role.name, 'Administrator')
     await role.save()
-    let translation = await role.translation().fetch()
+    let translation = role.getRelated('translation')
     assert.deepEqual(translation.name, 'Administrator')
 
-    role = await getRole().first()
+    role = await getRole().query().first()
     assert.deepEqual(role.name, 'Administrator')
 
     let roles = await getRole().all()

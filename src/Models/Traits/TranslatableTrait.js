@@ -1,3 +1,14 @@
+/**
+ * @Author: Emilio Forrer <emilioforrer>
+ * @Date:   2018-05-06T11:45:54-06:00
+ * @Email:  dev.emilio.forrer@gmail.com
+ * @Filename: TranslatableTrait.js
+ * @Last modified by:   emilioforrer
+ * @Last modified time: 2018-05-06T11:49:04-06:00
+ * @License: For the full license information, please view the LICENSE
+ * @Copyright: (c) Emilio Forrer
+ */
+
 const _ = use('lodash')
 const Antl = use('Antl')
 const pluralize = use('pluralize')

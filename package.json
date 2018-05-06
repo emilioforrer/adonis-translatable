@@ -1,20 +1,40 @@
 {
   "name": "@emilioforrer/adonis-translatable",
   "version": "1.0.0",
-  "description": "A sample addon for AdonisJs",
+  "description": "AdonisJS Lucid internationalization models",
   "main": "index.js",
   "scripts": {
     "lint": "standard",
     "pretest": "npm run lint",
     "test": "node ./node_modules/nyc/bin/nyc.js ./node_modules/japa-cli/index.js"
   },
-  "private": true,
   "keywords": [
     "adonisjs",
-    "adonis-framework"
+    "adonis-framework",
+    "database",
+    "internationalization",
+    "localization",
+    "translation",
+    "lucid"
   ],
-  "author": "",
-  "license": "",
+  "author": "Emilio Forrer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilioforrer/adonis-translatable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emilioforrer/adonis-translatable/issues"
+  },
+  "homepage": "https://github.com/emilioforrer/adonis-translatable#readme",
+  "nyc": {
+    "exclude": [
+      "src/Exceptions",
+      "providers",
+      "test",
+      "bin"
+    ]
+  },
   "standard": {
     "globals": [
       "use"

@@ -42,6 +42,14 @@ test.group('Antldb', (group) => {
     role = await getRole().query().first()
     assert.deepEqual(role.name, 'Administrator')
 
+    const objectRole = role.toObject()
+
+    assert.deepEqual(objectRole.name, 'Administrator')
+
+    const jsonRole = role.toObject()
+
+    assert.deepEqual(jsonRole.name, 'Administrator')
+
     let roles = await getRole().all()
     for (let record of roles.rows) {
       assert.deepEqual(record.name, 'Administrator')

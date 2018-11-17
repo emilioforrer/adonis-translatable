@@ -21,12 +21,15 @@ class TranslatableTrait {
   }
 
   async localize (modelInstance, translatableAttributes) {
+    /* istanbul ignore else */
     if (modelInstance.$persisted) {
       let translation = modelInstance.getRelated('translation')
+      /* istanbul ignore else */
       if (!translation) {
         await modelInstance.load('translation')
         translation = modelInstance.getRelated('translation')
       }
+      /* istanbul ignore else */
       if (translation) {
         for (let translatableAttribute of translatableAttributes) {
           modelInstance[translatableAttribute] = translation[translatableAttribute]
@@ -44,10 +47,21 @@ class TranslatableTrait {
     }
     const options = _.extend({}, defaultOptions, customOptions)
     const that = this
+    /* istanbul ignore else */
     if (_.isArray(options.attributes)) {
       let _instantiate = Model.prototype._instantiate
 
       // Model.translatableOptions = options.translatableAttributes
+
+      const _toObject = Model.prototype.toObject
+
+      Model.prototype.toObject = function () {
+        let json = _toObject.call(this)
+        for (let translatableAttribute of options.attributes) {
+          json[translatableAttribute] = this[translatableAttribute]
+        }
+        return json
+      }
 
       Model.prototype.translation = function () {
         return this.hasOne(

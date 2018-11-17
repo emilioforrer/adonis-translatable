@@ -1,6 +1,6 @@
 {
   "name": "@emilioforrer/adonis-translatable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AdonisJS Lucid internationalization models",
   "main": "index.js",
   "scripts": {
